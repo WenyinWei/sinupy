@@ -1,0 +1,15 @@
+LICENSE
+README.md
+setup.py
+sinupy/__init__.py
+sinupy.egg-info/PKG-INFO
+sinupy.egg-info/SOURCES.txt
+sinupy.egg-info/dependency_links.txt
+sinupy.egg-info/top_level.txt
+sinupy/algebra/__init__.py
+sinupy/algebra/dispersion.py
+sinupy/algebra/draw.py
+sinupy/algebra/parameter.py
+sinupy/algebra/quadratic.py
+sinupy/algebra/tensor.py
+sinupy/algebra/utility.py

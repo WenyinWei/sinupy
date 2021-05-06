@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: sinupy
+Version: 0.0.1
+Summary: The sinupy package make it convenient to analyze the characteristic sinusoidal waves propagating in various kinds of medium. Typical waves in plasma have been given in the code to demonstrate how the package works and other users are free to follow the steps to research on their medium or charcteristic waves of interest.
+Home-page: https://github.com/WenyinWei/sinupy
+Author: Wenyin Wei
+Author-email: wenyin.wei@ipp.ac.cn
+License: UNKNOWN
+Description: # The sinupy Package
+        
+        The sinupy package make it convenient to analyze the characteristic sinusoidal waves propagating in various kinds of medium. Typical waves in plasma have been given in the code to demonstrate how the package works and other users are free to follow the steps to research on their medium or charcteristic waves of interest.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
