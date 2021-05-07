@@ -15,20 +15,6 @@ from sympy import tensorcontraction as _tcontract
 from sympy import tensorproduct as _tprod
 from sinupy.algebra.utility import run_once
 
-# The components in relative dielectric tensor 
-def kappa_para(magnetized_plasma=None):
-    return _Symbol('kappa_\parallel', real=True)
-def kappa_times(magnetized_plasma=None):
-    return _Symbol('\kappa_{\\times}', real=True)
-def kappa_perp(magnetized_plasma=None):
-    return _Symbol('kappa_\perp', real=True)
-def relative_dielectric_tensor(magnetized_plasma=None): # The tensor's symbols is kappa 
-    from sympy import I
-    return _Matrix([
-        [kappa_perp(magnetized_plasma),    -I*kappa_times(magnetized_plasma), 0],
-        [I*kappa_times(magnetized_plasma), kappa_perp(magnetized_plasma),     0],
-        [0,                                0,                                 kappa_para(magnetized_plasma)]])
-
 def omega_pe(plasma=None):
     return _Symbol('\omega_{pe}', negative=False)
 def omega_ce(magnetized_plasma=None):
@@ -38,7 +24,7 @@ def omega_pi(plasma=None):
 def omega_ci(magnetized_plasma=None):
     return _Symbol('\omega_{ci}', negative=False)
 
-def subs_kappa_with_omega(expr, plasma=None):
+def kappa2omega(expr, wave, plasma=None):
     """Substitute kappa components with various omega -- characteristic (angular) frequency in plasma.
 
     Args:
@@ -55,15 +41,16 @@ def subs_kappa_with_omega(expr, plasma=None):
         Do not try to simplify the expression! The expression can be so complicated that a lot of time would be wasted to get a nonsense.
 
     """
+    from sinupy.waves.EM import kappa_para, kappa_perp, kappa_times
     f = lambda a,b,c: a**2 / (b**2 - c**2)
     if plasma.species == 'electron':
-        o, o_pe, o_ce = cls.omega, omega_pe(plasma), omega_ce(plasma)
+        w, w_pe, w_ce = wave.omega, omega_pe(plasma), omega_ce(plasma)
         expr = expr\
-            .subs(kappa_perp, 1 - f(o_pe, o, o_ce))\
-            .subs(kappa_times, (o_ce / o) * f(o_pe, o, o_ce))\
-            .subs(kappa_para, 1 - o_pe**2 / o**2 ) 
+            .subs(kappa_perp(plasma), 1 - f(w_pe, w, w_ce))\
+            .subs(kappa_times(plasma), (w_ce / w) * f(w_pe, w, w_ce))\
+            .subs(kappa_para(plasma), 1 - w_pe**2 / w**2 ) 
     elif plasma.species == 'electron+ion':
-        w, w_pe, w_ce, w_pi, w_ci = cls.omega, omega_pe(plasma), omega_ce(plasma), omega_pi(plasma), omega_ci(plasma)
+        w, w_pe, w_ce, w_pi, w_ci = wave.omega, omega_pe(plasma), omega_ce(plasma), omega_pi(plasma), omega_ci(plasma)
         expr = expr\
             .subs(kappa_perp(plasma), 
                 1 - f(w_pe, w, w_ce) - f(w_pi, w, w_ci))\

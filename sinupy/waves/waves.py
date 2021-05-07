@@ -18,6 +18,7 @@ class Wave:
 
 class ElectroMagneticWave(Wave):
     def __init__(self, E=None, B=None):
+        super().__init__()
         self.E = E
         self.B = B
 
@@ -25,3 +26,5 @@ class ElectrostaticWave(Wave):
     def __init__(self, E=None):
         self.E = E
 
+def makeWave(k=None, w=None, u=None, E=None, B=None):
+    pass
