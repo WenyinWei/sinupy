@@ -11,7 +11,6 @@ from sympy import Matrix as _Matrix
 from sympy import LeviCivita as _LeviCivita
 from sympy import tensorcontraction as _tcontract
 from sympy import tensorproduct as _tprod
-from sinupy.algebra.utility import run_once
 
 class Medium:
     def __init__(self):

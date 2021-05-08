@@ -6,65 +6,48 @@ Author: Wenyin Wei wenyin.wei@ipp.ac.cn
 
 from sympy import Symbol as _Symbol 
 from sympy import Matrix as _Matrix
+from sympy import Eq as _Eq
 
-# The components in relative dielectric tensor 
-def kappa_para(magnetized_plasma=None):
-    return _Symbol('kappa_\parallel', real=True)
-def kappa_times(magnetized_plasma=None):
-    return _Symbol('\kappa_{\\times}', real=True)
-def kappa_perp(magnetized_plasma=None):
-    return _Symbol('kappa_\perp', real=True)
-def relative_dielectric_tensor(plasma=None): # The tensor's symbols is kappa 
-    from sympy import I
+class WaveEq(_Eq):
+    def __init__(self, medium, wave=None, *arg, **kwarg):
+        from .waves import Wave
+        # super().__init__(wave.k cross (wave.k cross E) + (wave.w/c())**2 (kappa_tensor_p dot E), 0)
+        self.medium = medium 
+        self.wave = Wave() if wave is None else wave
+    
+    def coeff_tensor(self):
+        from ..algebra.tensor import m_A_x
+        from ..mediums.plasma import relative_dielectric_tensor
+        m_vk_x = m_A_x(self.wave.k)
+        return m_vk_x.tomatrix() * m_vk_x.tomatrix() + (self.wave.w / c())**2 * relative_dielectric_tensor(self.medium)
+    
+def theta_btwn_B_and_k(wave_eq):
     from ..mediums import MagnetizedPlasma
-    if isinstance(plasma, MagnetizedPlasma):
-        return _Matrix([
-            [kappa_perp(plasma),    -I*kappa_times(plasma), 0                   ],
-            [I*kappa_times(plasma), kappa_perp(plasma),     0                   ],
-            [0,                                0,           kappa_para(plasma)  ]])
-def relative_refraction_N(plasma, wave):
-    return _Symbol('N')
-
-def k_0(electromagnetic_wave):
-    # from sinupy.waves import ElectroMagneticWave
-    # if isinstance(electromagnetic_wave, ElectroMagneticWave):    
-    return _Symbol('k_0', positive=True)
-
-def wave_from_wave_equation(plasma=None):
-    from .waves import Wave
-    return Wave()
-
-def theta_between_B_and_k(plasma, wave):
+    assert(isinstance(wave_eq.medium, MagnetizedPlasma))
     return _Symbol('theta', nonnegative=True)
+    
 
-def tensor_in_wave_equation(plasma, wave):
-    from ..algebra.tensor import m_A_x
-    wave = wave_from_wave_equation()
-    m_vk_x = m_A_x(wave.k)
-    return m_vk_x.tomatrix() * m_vk_x.tomatrix() + k_0(wave)**2 * relative_dielectric_tensor(plasma) 
-
-def N2_with_theta_and_kappa_component_via_det_equal_zero(plasma, wave):
+def solve_N2(wave_eq, theta=None): # Express N**2, the square of the wave's relative refraction index, with theta and kappa symbols.
     from sympy import solve, Eq
     from sympy import sin, cos
-    det = tensor_in_wave_equation(plasma, wave).det()
-    wave = wave_from_wave_equation() if wave is None else wave
-    det = det.subs(wave.k[1], 0) # set k_y to 0
-    theta = theta_between_B_and_k(plasma, wave) 
-    det = det.subs(wave.k[0], wave.k_amp() * sin(theta)) # set k_x to k_amp * sin(theta)
-    det = det.subs(wave.k[2], wave.k_amp() * cos(theta)) # set k_z to k_amp * cos(theta)
-    N = relative_refraction_N(plasma, wave)
-    det = det.subs(wave.k_amp(), k_0(wave) * N)
-    N2_sol = solve(Eq(det.simplify(), 0), (N**2))
-    return [sol.simplify() for sol in N2_sol]
+    from .waves import c
+    det = wave_eq.coeff_tensor().det()
+    wave = wave_eq.wave
+    from ..mediums import MagnetizedPlasma
+    if isinstance(wave_eq.medium, MagnetizedPlasma):
+        theta_ = theta_btwn_B_and_k(wave_eq) if theta is None else theta
+        det = det.subs(wave.k[1], 0) # set k_y to 0
+        det = det.subs(wave.k[0], wave.k_amp() * sin(theta_)) # set k_x to k_amp * sin(theta)
+        det = det.subs(wave.k[2], wave.k_amp() * cos(theta_)) # set k_z to k_amp * cos(theta)
+        N = wave.relative_refraction_N()
+        det = det.subs(wave.k_amp(), wave.w / c() * N)
+        N2_sol = solve(Eq(det.simplify(), 0), (N**2))
+        if theta is None:
+            return [sol.simplify() for sol in N2_sol]
+        else:
+            from ..algebra.quadratic import simplify_quadratic_sols
+            return list(simplify_quadratic_sols(N2_sol[0], N2_sol[1]))
+    else:
+        raise NotImplementedError()
 
-
-def N2_with_specific_theta_and_kappa_component_via_det_equal_zero(plasma, wave, theta_value):
-    from ..algebra.quadratic import simplify_quadratic_sols
-    theta = theta_between_B_and_k(plasma, wave)
-    N2_with_specific_theta_and_kappa_component_ = [
-            sol.subs(theta, theta_value) 
-        for sol in N2_with_theta_and_kappa_component_via_det_equal_zero(plasma, wave)]
-    return list(simplify_quadratic_sols(
-        N2_with_specific_theta_and_kappa_component_[0],
-        N2_with_specific_theta_and_kappa_component_[1]))
 
