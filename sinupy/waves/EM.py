@@ -7,17 +7,32 @@ Author: Wenyin Wei wenyin.wei@ipp.ac.cn
 from sympy import Symbol as _Symbol 
 from sympy import Matrix as _Matrix
 from sympy import Eq as _Eq
+from sympy import tensorcontraction as _tcontract
+from sympy import tensorproduct as _tprod
+m_dot_v = lambda a,b : _tcontract(_tprod(a, b), (1,2))
 
 class WaveEq(_Eq):
-    def __init__(self, medium, wave=None, *arg, **kwarg):
-        from .waves import Wave
-        # super().__init__(wave.k cross (wave.k cross E) + (wave.w/c())**2 (kappa_tensor_p dot E), 0)
-        self.medium = medium 
-        self.wave = Wave() if wave is None else wave
-    
-    def coeff_tensor(self):
+    def __new__(cls, medium, wave=None, *arg, **kwarg):
+        from .waves import ElectroMagneticWave
         from ..algebra.tensor import m_A_x
         from ..mediums.plasma import relative_dielectric_tensor
+        if wave is None:
+            wave = ElectroMagneticWave() 
+        from .waves import c
+        m_vk_x = m_A_x(wave.k)
+        obj = super(_Eq, cls).__new__(cls,
+            m_dot_v(m_vk_x, m_dot_v(m_vk_x, wave.E)), 
+            - (wave.w/c())**2 * m_dot_v(
+                relative_dielectric_tensor(medium), 
+                wave.E), *arg, **kwarg)
+        obj.medium = medium
+        obj.wave = wave
+        return obj
+
+    def coeff_matrix(self):
+        from ..algebra.tensor import m_A_x
+        from ..mediums.plasma import relative_dielectric_tensor
+        from .waves import c
         m_vk_x = m_A_x(self.wave.k)
         return m_vk_x.tomatrix() * m_vk_x.tomatrix() + (self.wave.w / c())**2 * relative_dielectric_tensor(self.medium)
     
@@ -31,7 +46,7 @@ def solve_N2(wave_eq, theta=None): # Express N**2, the square of the wave's rela
     from sympy import solve, Eq
     from sympy import sin, cos
     from .waves import c
-    det = wave_eq.coeff_tensor().det()
+    det = wave_eq.coeff_matrix().det()
     wave = wave_eq.wave
     from ..mediums import MagnetizedPlasma
     if isinstance(wave_eq.medium, MagnetizedPlasma):

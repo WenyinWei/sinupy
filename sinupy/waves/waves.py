@@ -49,20 +49,9 @@ class ElectroMagneticWave(Wave):
     def relative_refraction_N(self):
         return _Symbol('N_{varidx}'.format(varidx=self.varidx))
 
-class ElectrostaticWave(Wave):
-    def __init__(self, E=None, *arg, **kwarg):
+class ElectrostaticWave(ElectroMagneticWave):
+    def __init__(self, *arg, **kwarg):
         super().__init__(*arg, **kwarg)
-
-        if E is None: 
-            E_x, E_y, E_z = _symbols('E_x_{varidx}, E_y_{varidx}, E_z_{varidx}'.format(varidx=self.varidx), complex=True)
-            self.E = _Array([E_x, E_y, E_z])
-        else:
-            self.E = E
-
-    def E_amp(self):
-        return _Symbol('E_{amp}_{varidx}'.format(amp='amp', varidx=self.varidx), negative=False)
-    def relative_refraction_N(self):
-        return _Symbol('N_{varidx}'.format(varidx=self.varidx))
 
 def makeWave(k=None, w=None, u=None, E=None, B=None):
     pass

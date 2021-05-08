@@ -32,7 +32,7 @@ def kappa_perp(magnetized_plasma=None):
     return _Symbol('kappa_\perp', real=True)
 def relative_dielectric_tensor(plasma=None): # The tensor's symbols is kappa 
     from sympy import I
-    from ..mediums import MagnetizedPlasma
+    from .mediums import MagnetizedPlasma
 
     if isinstance(plasma, MagnetizedPlasma):
         return _Matrix([

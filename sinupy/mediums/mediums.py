@@ -9,8 +9,6 @@ from sympy import symbols as _symbols
 from sympy import Array as _Array
 from sympy import Matrix as _Matrix
 from sympy import LeviCivita as _LeviCivita
-from sympy import tensorcontraction as _tcontract
-from sympy import tensorproduct as _tprod
 
 class Medium:
     def __init__(self):
@@ -36,7 +34,6 @@ class Plasma(Medium):
 
     def __init__(self, species='e', *arg, **kwarg):
         super().__init__(*arg, **kwarg)
-        self.n_e, self.n_i = _symbols('n_e, n_i', nonnegative=True)
         self.species = species
         if species=='e':
             self.n_e = _symbols('n_e', nonnegative=True)
@@ -44,6 +41,8 @@ class Plasma(Medium):
         elif species=='e+i':
             self.n_e, self.n_i = _symbols('n_e, n_i', nonnegative=True)
             self.n_species = (self.n_e, self.n_i)
+        else:
+            raise NotImplementedError()
 
 class WarmPlasma(Plasma):
     
