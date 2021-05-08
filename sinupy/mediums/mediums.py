@@ -14,26 +14,29 @@ from sympy import tensorproduct as _tprod
 from sinupy.algebra.utility import run_once
 
 class Medium:
-    def __init__(self, name="Unknown Medium"):
-        if name: self.name = name
+    def __init__(self):
+        pass
 
 
 class Solid(Medium):
-    def __init__(self):
-        pass
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 
 class Liquid(Medium):
-    def __init__(self):
-        pass
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 
 class Gas(Medium):
-    def __init__(self):
-        pass
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 
 class Plasma(Medium):
 
-    def __init__(self, species='e'):
-        super().__init__()
+    def __init__(self, species='e', *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
         self.n_e, self.n_i = _symbols('n_e, n_i', nonnegative=True)
         self.species = species
         if species=='e':
@@ -45,20 +48,23 @@ class Plasma(Medium):
 
 class WarmPlasma(Plasma):
     
-    def __init__(self, T=None):
+    def __init__(self, T=None, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
         if T is None:
             self.T = _Symbol('T')
         else:
             self.T = 0
-        super().__init__()
-    
     
 class ColdPlasma(WarmPlasma):
-    def __init__(self, T=None):
-        pass
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 
 class MagnetizedPlasma(Plasma):
-    def __init__(self, B=None):
+    def __init__(self, B=None, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
         if B is None:
             self.B = B
         else:
@@ -67,23 +73,24 @@ class MagnetizedPlasma(Plasma):
 
 class WarmMagnetizedPlasma(WarmPlasma, MagnetizedPlasma):
 
-    def __init__(self):
-        pass
-
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 class ColdMagnetizedPlasma(ColdPlasma, MagnetizedPlasma):
 
-    def __init__(self):
-        pass
+    def __init__(self, *arg, **kwarg):
+        super().__init__(*arg, **kwarg)
+    
 
 def makePlasma(Maxwell=True, f=None, B=None, T=None):
     if Maxwell:
         if B is not None:
             return WarmMagnetizedPlasma()
-        else B is None:
+        else:
             return WarmPlasma()
     elif not Maxwell:
         if B is not None:
             return MagnetizedPlasma()
-        elif B is None:
+        else:
             return Plasma()
     

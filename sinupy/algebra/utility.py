@@ -4,27 +4,6 @@ Author: Wenyin Wei wenyin.wei@ipp.ac.cn
 
 """
 
-
-def run_once(f):
-    """Decorator to describe a function that only needs to run once and store the result in the memory in case of future reuse.
-
-    From aaronasterling, StackOverflow https://stackoverflow.com/questions/4103773/efficient-way-of-having-a-function-only-execute-once-in-a-loop.
-
-    Args:
-        f (function): A function that only needs to run once
-    """
-    def wrapper(*args, **kwargs):
-        if not wrapper.has_run:
-            wrapper.has_run = True
-            wrapper.result = f(*args, **kwargs)
-            return wrapper.result
-        else:
-            return wrapper.result
-    wrapper.has_run = False
-    wrapper.result = None
-    return wrapper
-
-
 def find_singularities(expr, var):
     from sympy.core.power import Pow
     from sympy.core.mul import Mul

@@ -43,13 +43,13 @@ def kappa2omega(expr, wave, plasma=None):
     """
     from sinupy.waves.EM import kappa_para, kappa_perp, kappa_times
     f = lambda a,b,c: a**2 / (b**2 - c**2)
-    if plasma.species == 'electron':
+    if plasma.species == 'e':
         w, w_pe, w_ce = wave.omega, omega_pe(plasma), omega_ce(plasma)
         expr = expr\
             .subs(kappa_perp(plasma), 1 - f(w_pe, w, w_ce))\
             .subs(kappa_times(plasma), (w_ce / w) * f(w_pe, w, w_ce))\
             .subs(kappa_para(plasma), 1 - w_pe**2 / w**2 ) 
-    elif plasma.species == 'electron+ion':
+    elif plasma.species == 'e+i':
         w, w_pe, w_ce, w_pi, w_ci = wave.omega, omega_pe(plasma), omega_ce(plasma), omega_pi(plasma), omega_ci(plasma)
         expr = expr\
             .subs(kappa_perp(plasma), 

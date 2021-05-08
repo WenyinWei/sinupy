@@ -1,4 +1,4 @@
-"""Algebra utilities involved in the deduction procedure of fusion plasma physics formula.
+"""Convenient draw utilities for sympy expression.
 
 Author: Wenyin Wei wenyin.wei@ipp.ac.cn
 
