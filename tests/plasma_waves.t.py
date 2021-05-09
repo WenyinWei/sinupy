@@ -13,7 +13,6 @@ from sympy import tensorcontraction as _tcontract
 from sympy import tensorproduct as _tprod
 m_dot_v = lambda a,b : _tcontract(_tprod(a, b), (1,2))
 
-from sinupy.waves import c
 m_vk_x = m_A_x(wave.k)
 wave_eq = waves.EM.WaveEq(plasma)
 wave_eq.coeff_matrix()

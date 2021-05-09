@@ -11,6 +11,9 @@ from sympy import tensorcontraction as _tcontract
 from sympy import tensorproduct as _tprod
 m_dot_v = lambda a,b : _tcontract(_tprod(a, b), (1,2))
 
+def c(): # light speed in vacuum 
+    return _Symbol('c', positive=True)
+
 class WaveEq(_Eq):
     def __new__(cls, medium, wave=None, *arg, **kwarg):
         from .waves import ElectroMagneticWave
@@ -18,7 +21,6 @@ class WaveEq(_Eq):
         from ..mediums.plasma import relative_dielectric_tensor
         if wave is None:
             wave = ElectroMagneticWave() 
-        from .waves import c
         m_vk_x = m_A_x(wave.k)
         obj = super(_Eq, cls).__new__(cls,
             m_dot_v(m_vk_x, m_dot_v(m_vk_x, wave.E)), 
@@ -32,7 +34,6 @@ class WaveEq(_Eq):
     def coeff_matrix(self):
         from ..algebra.tensor import m_A_x
         from ..mediums.plasma import relative_dielectric_tensor
-        from .waves import c
         m_vk_x = m_A_x(self.wave.k)
         return m_vk_x.tomatrix() * m_vk_x.tomatrix() + (self.wave.w / c())**2 * relative_dielectric_tensor(self.medium)
     
@@ -45,7 +46,6 @@ def theta_btwn_B_and_k(wave_eq):
 def solve_N2(wave_eq, theta=None): # Express N**2, the square of the wave's relative refraction index, with theta and kappa symbols.
     from sympy import solve, Eq
     from sympy import sin, cos
-    from .waves import c
     det = wave_eq.coeff_matrix().det()
     wave = wave_eq.wave
     from ..mediums import MagnetizedPlasma

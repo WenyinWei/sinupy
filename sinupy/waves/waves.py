@@ -23,9 +23,6 @@ class Wave:
 
 
 # Waves involved in electrodynamics
-def c(): # light speed in vacuum 
-    return _Symbol('c', positive=True)
-
 class ElectroMagneticWave(Wave):
     def __init__(self, E=None, B=None, *arg, **kwarg):
         super().__init__(*arg, **kwarg)

@@ -5,6 +5,12 @@ The sinupy package makes it convenient to analyze the characteristic sinusoidal 
 
 ## Usage Tips
 
+- Unstable APIs
+
+    The APIs are not stable now, please contact Wenyin Wei (wenyin.wei.ww@gmail.com) for face-to-face communication to save your time. Though unstable, they are *easy to understand*, if the user is familiar with Python enough, he or she can easily recognize the techniques and tricks the package uses.
+
+    The jupyter notebooks in the `sinupy/nb` folder are complete and self-contained to allow the newcoming users to understand how the code works.
+
 - Consider the users of this package are scientists who spend a lot of time on the decution of physical formulas, *the attributes in any classes in sinupy are intentionally set public without leading underscores* `_`.
 
 - Sympy Variable Name Crash

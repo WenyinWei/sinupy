@@ -2,3 +2,4 @@
 /dist
 /sinupy.egg-info
 *.pyc
+*-checkpoint.ipynb

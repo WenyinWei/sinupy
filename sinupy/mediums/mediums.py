@@ -34,16 +34,9 @@ class Plasma(Medium):
 
     def __init__(self, species='e', *arg, **kwarg):
         super().__init__(*arg, **kwarg)
-        self.species = species
-        if species=='e':
-            self.n_e = _symbols('n_e', nonnegative=True)
-            self.n_species = (self.n_e)
-        elif species=='e+i':
-            self.n_e, self.n_i = _symbols('n_e, n_i', nonnegative=True)
-            self.n_species = (self.n_e, self.n_i)
-        else:
-            raise NotImplementedError()
-
+        self.species = set(species.split('+'))
+        self.n = {s: _symbols(f'n_{s}', nonnegative=True) for s in self.species}
+        self.m = {s: _symbols(f'm_{s}', nonnegative=True) for s in self.species}
 class WarmPlasma(Plasma):
     
     def __init__(self, T=None, *arg, **kwarg):
@@ -64,10 +57,13 @@ class MagnetizedPlasma(Plasma):
         super().__init__(*arg, **kwarg)
     
         if B is None:
-            self.B = B
-        else:
             B_x, B_y, B_z = _symbols('B_x, B_y, B_z')
             self.B = _Array([B_x, B_y, B_z])
+        else:
+            self.B = B
+
+    def B_amp(self):
+        return _symbols('B^{static}_{amp}', negative=False)
 
 class WarmMagnetizedPlasma(WarmPlasma, MagnetizedPlasma):
 

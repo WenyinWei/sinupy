@@ -16,58 +16,57 @@ from sympy import tensorproduct as _tprod
 
 
 def omega_cj(
-    q_e=None, 
-    m=None, 
-    B=None, magnetized_plasma=None, varidx='j'):
+    q_e=None, m=None, B=None, 
+    plasma=None, varidx='j'):
     from scipy.constants import e
     from sympy import Abs
 
-    if any(v is not None for v in [q_e, m, B]):
-        return _Abs(q_e) * e * B / m
+    if all(v is not None for v in [q_e, m, B]):
+        return Abs(q_e) * e * B / m
     else:
         from .mediums import MagnetizedPlasma
-        p = magnetized_plasma
+        p = plasma
         if isinstance(p, MagnetizedPlasma) or p is None:
-            return _Symbol('\omega_{cj}'.format(pj=f'p{varidx}'), negative=False)
+            pass
+        else:
+            print("Make sure you have arg: plasma the right class -- MagnetizedPlasma, or its derived class.")
+        return _Symbol('\omega_{cj}'.format(cj=f'c{varidx}'), negative=False)
     
 def omega_pj(
-    n_0=None, 
-    q_e=None, 
-    m=None, plasma=None, varidx='j'):
+    n_0=None, q_e=None, m=None, 
+    plasma=None, varidx='j'):
     from scipy.constants import epsilon_0, e
     from sympy import sqrt
 
-    if any(v is not None for [n_0, q_e, B]):
-        return (q_e*_e) * sqrt( n_0 / (epsilon_0 * m) ) # Split the square of q_e * e, avoid it being too little
+    if all(v is not None for v in [n_0, q_e, m]):
+        return (q_e*e) * sqrt( n_0 / (epsilon_0 * m) ) # Split the square of q_e * e, avoid it being too little
     else:
         from .mediums import Plasma
         if isinstance(plasma, Plasma) or plasma is None:
-            return _Symbol('\omega_{pj}'.format(pj=f'p{varidx}'), negative=False)
+            pass
+        else:
+            print("Make sure you have arg: plasma the right class -- Plasma, or its derived class.")
+        return _Symbol('\omega_{pj}'.format(pj=f'p{varidx}'), negative=False)
+        
  
-def omega_ce(
-    B=None, 
-    magnetized_plasma=None):
+def omega_ce(B=None, plasma=None, varidx='e'):
     from scipy.constants import m_e
     return omega_cj(
-        -1, m_e, B, 
-        magnetized_plasma=magnetized_plasma, 
-        varidx='e')
-def omega_pe(
-    n_0=None, 
-    plasma=None):
+        q_e=-1, m=m_e, B=B, 
+        plasma=plasma, varidx=varidx)
+def omega_pe(n_0=None, plasma=None, varidx='e'):
     from scipy.constants import m_e
     return omega_pj(
-        n_0, -1, m_e, B, 
-        plasma=plasma, 
-        varidx='e')
+        n_0=n_0, q_e=-1, m=m_e,
+        plasma=plasma, varidx=varidx)
 
 
 # The components in relative dielectric tensor 
-def kappa_para(magnetized_plasma=None):
+def kappa_para(plasma=None):
     return _Symbol('kappa_\parallel', real=True)
-def kappa_times(magnetized_plasma=None):
+def kappa_times(plasma=None):
     return _Symbol('\kappa_{\\times}', real=True)
-def kappa_perp(magnetized_plasma=None):
+def kappa_perp(plasma=None):
     return _Symbol('kappa_\perp', real=True)
 def relative_dielectric_tensor(plasma=None): # The tensor's symbols is kappa 
     from sympy import I
@@ -81,7 +80,7 @@ def relative_dielectric_tensor(plasma=None): # The tensor's symbols is kappa
     else:
         raise NotImplementedError()
 
-def kappa2omega(expr, wave, plasma=None):
+def kappa2omega(expr, wave, plasma):
     """Substitute kappa components with various omega -- characteristic (angular) frequency in plasma.
 
     Args:
@@ -99,14 +98,15 @@ def kappa2omega(expr, wave, plasma=None):
 
     """
     f = lambda a,b,c: a**2 / (b**2 - c**2)
-    if plasma.species == 'e':
-        w, w_pe, w_ce = wave.omega, omega_pe(plasma), omega_ce(plasma)
+    p = plasma
+    if plasma.species == {'e'}:
+        w, w_pe, w_ce = wave.w, omega_pe(plasma=p), omega_ce(plasma=p)
         expr = expr\
             .subs(kappa_perp(plasma), 1 - f(w_pe, w, w_ce))\
             .subs(kappa_times(plasma), (w_ce / w) * f(w_pe, w, w_ce))\
             .subs(kappa_para(plasma), 1 - w_pe**2 / w**2 ) 
-    elif plasma.species == 'e+i':
-        w, w_pe, w_ce, w_pi, w_ci = wave.omega, omega_pe(plasma), omega_ce(plasma), omega_pi(plasma), omega_ci(plasma)
+    elif plasma.species == {'e', 'i'}:
+        w, w_pe, w_ce, w_pi, w_ci = wave.w, omega_pe(plasma=p), omega_ce(plasma=p), omega_pj(plasma=p, varidx='i'), omega_cj(plasma=p, varidx='i')
         expr = expr\
             .subs(kappa_perp(plasma), 
                 1 - f(w_pe, w, w_ce) - f(w_pi, w, w_ci))\
