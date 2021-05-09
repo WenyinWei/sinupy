@@ -1,6 +1,69 @@
 # The sinupy Package
 
-The sinupy package makes it convenient to analyze the characteristic sinusoidal waves propagating in various kinds of medium. Typical waves in plasma have been given in the code to demonstrate how the package works and other users are free to follow the steps to research on their medium or charcteristic waves of interest.
+The `sinupy` package makes it convenient to analyze the characteristic sinusoidal waves propagating in various kinds of medium. Typical waves in plasma have been given in the code to demonstrate how the package works and other users are free to follow the steps to research on their medium or charcteristic waves of interest.
+## Wave Equation
+
+The electromagnetic wave equation is the theoretical basics of our formula derivation. The following formulas reveal what we call as the tensor coefficient matrix $T$
+
+$$
+\mathit{k}\times(\mathit{k}\times \tilde{\mathit{E}}) + k_0^2 \mathbf{\kappa}\cdot \tilde{\mathit{E}}=\mathit{0}
+$$
+
+$$
+\left(\begin{bmatrix}
+-k_z^2 &  & k_x k_z \\ 
+ & -k_x^2-k_z^2 & \\ 
+ k_x k_z &  & -k_x^2
+\end{bmatrix} + k_0^2
+\begin{bmatrix}
+\kappa_\perp & -j \kappa_\times & \\ 
+j\kappa_\times & \kappa_\perp  & \\ 
+ &  & \kappa_\parallel
+\end{bmatrix}\right)\cdot 
+\begin{bmatrix}
+\tilde{E}_x\\ 
+\tilde{E}_y\\ 
+\tilde{E}_z
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\ 
+0\\ 
+0
+\end{bmatrix}
+\$$
+$$
+$$
+\mathbf{T}\cdot 
+\begin{bmatrix}
+\tilde{E}_x\\ 
+\tilde{E}_y\\ 
+\tilde{E}_z
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\ 
+0\\ 
+0
+\end{bmatrix}
+$$
+
+
+You can acquire the `sympy.Array` representation of the above (tensor) matrix coefficients by the `WaveEq` class' `coeff_matrix()` method. For the relevant variable, you can get them by attribute *e.g.*, `wave_eq.wave.k[1]` means the wave's $k_y$ component of $\vec{k}$ vector.
+
+## Example Snapshots
+
+### How the refraction index $N$ changes with $\omega$ and $\theta$
+
+![N2(omega_theta)](https://wxy-1259064855.cos.ap-beijing.myqcloud.com/img/N2(omega_theta)_1620558947574.png)
+
+### $\omega-\vec{k}$ Diagram
+![w_k](https://wxy-1259064855.cos.ap-beijing.myqcloud.com/img/w_k_1620558958144.png)
+
+Refer to the `sinupy/nb/dispersion_relation.ipynb` for more info.
+### The Famous CMA Diagram in Plasma Physics
+![CMA](https://wxy-1259064855.cos.ap-beijing.myqcloud.com/img/CMA_1620558952738.png)
+
+Refer to the `sinupy/nb/CMA.ipynb` for more info.
+
 
 
 ## Usage Tips
