@@ -14,14 +14,53 @@ from sympy import LeviCivita as _LeviCivita
 from sympy import tensorcontraction as _tcontract
 from sympy import tensorproduct as _tprod
 
-def omega_pe(plasma=None):
-    return _Symbol('\omega_{pe}', negative=False)
-def omega_ce(magnetized_plasma=None):
-    return _Symbol('\omega_{ce}', negative=False)
-def omega_pi(plasma=None):
-    return _Symbol('\omega_{pi}', negative=False)
-def omega_ci(magnetized_plasma=None):
-    return _Symbol('\omega_{ci}', negative=False)
+
+def omega_cj(
+    q_e=None, 
+    m=None, 
+    B=None, magnetized_plasma=None, varidx='j'):
+    from scipy.constants import e
+    from sympy import Abs
+
+    if any(v is not None for v in [q_e, m, B]):
+        return _Abs(q_e) * e * B / m
+    else:
+        from .mediums import MagnetizedPlasma
+        p = magnetized_plasma
+        if isinstance(p, MagnetizedPlasma) or p is None:
+            return _Symbol('\omega_{cj}'.format(pj=f'p{varidx}'), negative=False)
+    
+def omega_pj(
+    n_0=None, 
+    q_e=None, 
+    m=None, plasma=None, varidx='j'):
+    from scipy.constants import epsilon_0, e
+    from sympy import sqrt
+
+    if any(v is not None for [n_0, q_e, B]):
+        return (q_e*_e) * sqrt( n_0 / (epsilon_0 * m) ) # Split the square of q_e * e, avoid it being too little
+    else:
+        from .mediums import Plasma
+        if isinstance(plasma, Plasma) or plasma is None:
+            return _Symbol('\omega_{pj}'.format(pj=f'p{varidx}'), negative=False)
+ 
+def omega_ce(
+    B=None, 
+    magnetized_plasma=None):
+    from scipy.constants import m_e
+    return omega_cj(
+        -1, m_e, B, 
+        magnetized_plasma=magnetized_plasma, 
+        varidx='e')
+def omega_pe(
+    n_0=None, 
+    plasma=None):
+    from scipy.constants import m_e
+    return omega_pj(
+        n_0, -1, m_e, B, 
+        plasma=plasma, 
+        varidx='e')
+
 
 # The components in relative dielectric tensor 
 def kappa_para(magnetized_plasma=None):
