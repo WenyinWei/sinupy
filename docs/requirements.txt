@@ -1,0 +1,11 @@
+sphinx-rtd-theme
+
+nbsphinx
+
+Ipython
+
+recommonmark
+
+sphinx-markdown-tables
+
+sphinxemoji
