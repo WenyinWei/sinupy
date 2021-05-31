@@ -1,18 +1,11 @@
 Physics
 ========
 
-波的色散关系
+Wave dispersion relation
 -----------
 
 
-磁化等离子体中的波
+Waves in electronmagnetic plasma
 ----------------
 
-
-基本电子波
-----------
-
-
-包含离子运动的波
---------------
 
