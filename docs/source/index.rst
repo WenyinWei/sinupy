@@ -11,11 +11,7 @@ Welcome to Sinupy Doc's documentation!
    :caption: Contents:
 
    Getting start
+   Run with your first code
    Physics
-   User guide
+   API and developer guide
    examples
-
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
