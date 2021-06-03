@@ -7,7 +7,7 @@ Welcome to Sinupy Doc's documentation!
 ======================================
 
 
-.. image:: https://raw.githubusercontent.com/JOK3-li/PicBed/master/img/sinupy_big.jpg
+.. image:: https://raw.githubusercontent.com/JOK3-li/PicBed/master/img/sinupy_big_mk.jpg
    :target: https://github.com/WenyinWei/sinupy
    :alt: Sinupy logo
    :width: 575px
