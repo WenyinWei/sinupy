@@ -1,8 +1,11 @@
 # The sinupy Package
 
+![logo](https://raw.githubusercontent.com/JOK3-li/PicBed/master/img/sinupy_small_md.png)
+
+
 The `sinupy` package makes it convenient to analyze the characteristic sinusoidal waves propagating in various kinds of medium. Typical waves in plasma have been given in the code to demonstrate how the package works and other users are free to follow the steps to research on their medium or charcteristic waves of interest.  
 
-The documentation is available at [Doc](https://sinupy.readthedocs.io/en/latest/).
+The documentation is available at [Read The Doc](https://sinupy.readthedocs.io/en/latest/).
 
 ## Wave Equation
 

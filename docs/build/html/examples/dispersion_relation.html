@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Draw Dispersion Relation &mdash; EinsteinPy</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CMA Diagram" href="CMA.html" />
+    <link rel="prev" title="Wave Equation" href="wave_equation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sinupy
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Getting%20start.html">Getting start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Run%20with%20your%20first%20code.html">Run with your first code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Physics.html">Physics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API%20and%20developer%20guide.html">API and developer guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="wave_equation.html">Wave Equation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Draw Dispersion Relation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#N^2(\omega,-\theta)"><span class="math notranslate nohighlight">\(N^2(\omega, \theta)\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#References:">References:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CMA.html">CMA Diagram</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sinupy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../examples.html">examples</a> &raquo;</li>
+        
+      <li>Draw Dispersion Relation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/examples/dispersion_relation.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Draw-Dispersion-Relation">
+<h1>Draw Dispersion Relation<a class="headerlink" href="#Draw-Dispersion-Relation" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">e</span><span class="p">,</span> <span class="n">m_p</span><span class="p">,</span> <span class="n">m_e</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span> <span class="n">m_i_N</span><span class="p">,</span> <span class="n">m_e_N</span> <span class="o">=</span> <span class="n">m_p</span><span class="p">,</span> <span class="n">m_e</span>
+<span class="kn">import</span> <span class="nn">sinupy.mediums.plasma</span> <span class="k">as</span> <span class="nn">pms</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_printing</span><span class="p">;</span> <span class="n">init_printing</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">sinupy.draw</span> <span class="kn">import</span> <span class="n">draw_discontinuable_expr</span><span class="p">,</span> <span class="n">add_line_with_slope</span>
+
+<span class="kn">import</span> <span class="nn">sinupy.algebra.utility</span> <span class="k">as</span> <span class="nn">fualguti</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># from IPython.core.interactiveshell import InteractiveShell</span>
+<span class="c1"># InteractiveShell.ast_node_interactivity = &quot;all&quot; # display all expression in one cell instead of the last one</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sinupy</span> <span class="kn">import</span> <span class="n">mediums</span><span class="p">,</span> <span class="n">waves</span>
+<span class="kn">from</span> <span class="nn">sinupy.waves</span> <span class="kn">import</span> <span class="n">EM</span>
+<span class="n">plasma</span> <span class="o">=</span> <span class="n">mediums</span><span class="o">.</span><span class="n">ColdMagnetizedPlasma</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="s1">&#39;e+i&#39;</span><span class="p">)</span>
+<span class="n">wave_eq</span> <span class="o">=</span> <span class="n">waves</span><span class="o">.</span><span class="n">EM</span><span class="o">.</span><span class="n">WaveEq</span><span class="p">(</span><span class="n">plasma</span><span class="p">)</span>
+<span class="n">wave</span> <span class="o">=</span> <span class="n">wave_eq</span><span class="o">.</span><span class="n">wave</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">omega_ce</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_ce</span><span class="p">(</span><span class="n">plasma</span><span class="o">=</span><span class="n">plasma</span><span class="p">)</span>
+<span class="n">omega_pe</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_pe</span><span class="p">(</span><span class="n">plasma</span><span class="o">=</span><span class="n">plasma</span><span class="p">)</span>
+<span class="c1"># Even if your plasma.species is &#39;e&#39;, the ion-relevant symbols would not interrupt ...</span>
+<span class="c1"># our calculation procedure, because `expr.subs(a_specific_symbol, a_numeric_value)` ...</span>
+<span class="c1"># also would not interrupt our procedure (i.e. throw an exception) when it finds there ...</span>
+<span class="c1"># does not exist such `a_specific_symbol` in the formula.</span>
+<span class="n">omega_ci</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_cj</span><span class="p">(</span><span class="n">plasma</span><span class="o">=</span><span class="n">plasma</span><span class="p">,</span> <span class="n">varidx</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+<span class="n">omega_pi</span> <span class="o">=</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_pj</span><span class="p">(</span><span class="n">plasma</span><span class="o">=</span><span class="n">plasma</span><span class="p">,</span> <span class="n">varidx</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+
+<span class="c1"># Substitute symbol parameters with accurate numerical values.</span>
+<span class="c1"># Note the function will capture the variables B, n_0, m_i from the working scope.</span>
+
+<span class="n">w2N</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">expr</span><span class="p">:</span> <span class="n">expr</span>\
+    <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">omega_ce</span><span class="p">,</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_ce</span><span class="p">(</span><span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">omega_pe</span><span class="p">,</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_pe</span><span class="p">(</span><span class="n">n_0</span><span class="o">=</span><span class="n">n_0</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">omega_ci</span><span class="p">,</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_cj</span><span class="p">(</span><span class="n">q_e</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m_i_N</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="n">B</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">omega_pi</span><span class="p">,</span> <span class="n">pms</span><span class="o">.</span><span class="n">omega_pj</span><span class="p">(</span><span class="n">n_0</span><span class="o">=</span><span class="n">n_0</span><span class="p">,</span> <span class="n">q_e</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m_i_N</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="N^2(\omega,-\theta)">
+<h2><span class="math notranslate nohighlight">\(N^2(\omega, \theta)\)</span><a class="headerlink" href="#N^2(\omega,-\theta)" title="Permalink to this headline">¶</a></h2>
+<p>Express <span class="math notranslate nohighlight">\(N^2\)</span> with <span class="math notranslate nohighlight">\(\omega\)</span>, <span class="math notranslate nohighlight">\(\omega_{ce}\)</span>, <span class="math notranslate nohighlight">\(\omega_{pe}\)</span> and <em>e.t.c.</em> instead of <span class="math notranslate nohighlight">\(\kappa_\perp\)</span>, <span class="math notranslate nohighlight">\(\kappa_\times\)</span>, <span class="math notranslate nohighlight">\(\kappa_\parallel\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(N = |\vec{k}|/|\vec{k}_0|\)</span>, where <span class="math notranslate nohighlight">\(|\vec{k}_0| = \omega / c\)</span> is the wave vector of the electromagnetic wave with <span class="math notranslate nohighlight">\(\omega\)</span> (angular) frequency in vacuum.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\omega$ [rad/s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$N^2$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k$ [rad/m]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\omega$ [rad/s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">B</span><span class="p">,</span> <span class="n">n_0</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">1e20</span>
+<span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="n">N2_in_omega</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">pms</span><span class="o">.</span><span class="n">kappa2omega</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="n">wave</span><span class="p">,</span> <span class="n">plasma</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="c1"># kappa -&gt; omega.</span>
+        <span class="n">EM</span><span class="o">.</span><span class="n">solve_N2</span><span class="p">(</span><span class="n">wave_eq</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)]</span> <span class="c1"># &lt;-- Set theta here</span>
+    <span class="c1"># omega -&gt; accurate numerical values.</span>
+    <span class="n">N2</span> <span class="o">=</span> <span class="p">[</span><span class="n">w2N</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">N2_in_omega</span><span class="p">]</span>
+    <span class="c1"># Now N^2 only depends on wave.w</span>
+
+    <span class="k">if</span> <span class="n">theta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="c1">#         draw_kwarg[&#39;labels&#39;] = [{&#39;label&#39;: &#39;L&#39;}, {&#39;label&#39;: &#39;R&#39;}] # [&#39;L&#39;, &#39;R&#39;]</span>
+        <span class="n">subkwarg</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;L&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;R&#39;</span><span class="p">}]</span> <span class="c1"># [&#39;L&#39;, &#39;R&#39;]</span>
+    <span class="k">elif</span> <span class="n">theta</span> <span class="o">==</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+<span class="c1">#         draw_kwarg[&#39;labels&#39;] = [&#39;O&#39;, &#39;X&#39;]</span>
+        <span class="n">subkwarg</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;O&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;X&#39;</span><span class="p">}]</span> <span class="c1"># [&#39;L&#39;, &#39;R&#39;]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">subkwarg</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">draw_discontinuable_expr</span><span class="p">(</span>
+        <span class="n">N2</span><span class="p">,</span> <span class="n">wave</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+        <span class="n">varlim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5e7</span><span class="p">,</span> <span class="mf">3e12</span><span class="p">),</span> <span class="c1"># limit of wave angular frequency, omega</span>
+        <span class="n">exprlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">),</span> <span class="c1"># limit of N^2, refraction index</span>
+        <span class="n">num</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+        <span class="n">var_sample_scale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">list_subkwarg</span><span class="o">=</span><span class="n">subkwarg</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">k_in_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">wave</span><span class="o">.</span><span class="n">w</span> <span class="o">/</span> <span class="n">c</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">N2</span><span class="p">]</span>
+    <span class="n">draw_discontinuable_expr</span><span class="p">(</span>
+        <span class="n">k_in_w</span><span class="p">,</span> <span class="n">wave</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
+        <span class="n">varlim</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5e7</span><span class="p">,</span> <span class="mf">3e12</span><span class="p">),</span> <span class="c1"># limit of wave angular frequency, omega, rad/s</span>
+        <span class="n">exprlim</span><span class="o">=</span><span class="p">(</span><span class="mf">2e1</span><span class="p">,</span> <span class="mf">6e4</span><span class="p">),</span>        <span class="c1"># limit of wave vector length, k, rad/m</span>
+        <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">var_is_yaxis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">var_sample_scale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">list_subkwarg</span><span class="o">=</span><span class="n">subkwarg</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>       <span class="c1"># N^2 = 1</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1"># N^2 = 0</span>
+<span class="c1"># Add a line corresponding to light in vacuum.</span>
+<span class="c1"># add_line_with_slope(axs[1], c, num=500, color=&#39;grey&#39;, linestyle=&#39;--&#39;, label=&#39;c&#39;)</span>
+<span class="p">[</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;string&gt;:2: RuntimeWarning: invalid value encountered in sqrt
+&lt;string&gt;:2: RuntimeWarning: invalid value encountered in sqrt
+&lt;string&gt;:2: RuntimeWarning: invalid value encountered in sqrt
+&lt;string&gt;:2: RuntimeWarning: invalid value encountered in sqrt
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&lt;matplotlib.legend.Legend at 0x7fbca042f490&gt;,
+ &lt;matplotlib.legend.Legend at 0x7fbca042f1d0&gt;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_dispersion_relation_6_2.png" src="../_images/examples_dispersion_relation_6_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="s1">&#39;polar&#39;</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">theta$ [deg]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_theta_zero_location</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$N^2$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$k$ [rad/m]&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$v_</span><span class="si">{ph}</span><span class="s1">/c$&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+<span class="n">B</span><span class="p">,</span> <span class="n">n_0</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">1e20</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">EM</span><span class="o">.</span><span class="n">theta_btwn_B_and_k</span><span class="p">(</span><span class="n">wave_eq</span><span class="p">)</span>
+<span class="c1"># Substitute kappa components with omega.</span>
+<span class="n">N2_in_omega_theta</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">pms</span><span class="o">.</span><span class="n">kappa2omega</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="n">wave</span><span class="p">,</span> <span class="n">plasma</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span>
+    <span class="n">EM</span><span class="o">.</span><span class="n">solve_N2</span><span class="p">(</span><span class="n">wave_eq</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">omega</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">6e11</span><span class="p">]:</span> <span class="c1"># Usually `omega` expresses a fixed parameter, while `w` expresses a variable</span>
+
+
+    <span class="n">N2_in_theta</span> <span class="o">=</span> <span class="p">[</span><span class="n">w2N</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">wave</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">omega</span><span class="p">))</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">N2_in_omega_theta</span><span class="p">]</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">draw_discontinuable_expr</span><span class="p">(</span>
+        <span class="n">N2_in_theta</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span>
+        <span class="n">varlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14159</span><span class="p">,</span> <span class="mf">3.14159</span><span class="p">),</span> <span class="c1"># limit of theta, from [0, pi]</span>
+        <span class="n">exprlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">),</span> <span class="c1"># limit of N^2, refraction index</span>
+        <span class="n">num</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+        <span class="n">var_sample_scale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">list_subkwarg</span><span class="o">=</span><span class="n">subkwarg</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">k_in_theta</span> <span class="o">=</span> <span class="p">[</span><span class="n">omega</span> <span class="o">/</span> <span class="n">c</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">N2_in_theta</span><span class="p">]</span>
+    <span class="n">draw_discontinuable_expr</span><span class="p">(</span>
+        <span class="n">k_in_theta</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span>
+        <span class="n">varlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">pi</span><span class="p">)),</span> <span class="c1"># limit of theta, from [0, pi]</span>
+<span class="c1">#         exprlim=(0, 6e4), # limit of wave vector length, k, rad/m</span>
+        <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">var_is_yaxis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">var_sample_scale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">list_subkwarg</span><span class="o">=</span><span class="n">subkwarg</span><span class="p">)</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">v_ph_ratio_c_in_theta</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">N2_in_theta</span><span class="p">]</span>
+    <span class="n">draw_discontinuable_expr</span><span class="p">(</span>
+        <span class="n">v_ph_ratio_c_in_theta</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span>
+        <span class="n">varlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">pi</span><span class="p">)),</span> <span class="c1"># limit of theta, from [0, pi]</span>
+<span class="c1">#         exprlim=(0, 6e4), # limit of v_ph, wave phase speed, m/s</span>
+        <span class="n">num</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">var_is_yaxis</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">var_sample_scale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">list_subkwarg</span><span class="o">=</span><span class="n">subkwarg</span><span class="p">)</span>
+
+
+<span class="c1"># Add a line corresponding to light in vacuum.</span>
+<span class="c1"># add_line_with_slope(axs[1], c, num=500, color=&#39;grey&#39;, linestyle=&#39;--&#39;, label=&#39;c&#39;)</span>
+<span class="c1"># [ax.legend() for ax in axs]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_dispersion_relation_7_0.png" src="../_images/examples_dispersion_relation_7_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="References:">
+<h2>References:<a class="headerlink" href="#References:" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>For better color impression, <a class="reference external" href="https://matplotlib.org/3.1.0/gallery/color/named_colors.html">matplotlib official color gallery</a> can ben refered.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="CMA.html" class="btn btn-neutral float-right" title="CMA Diagram" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="wave_equation.html" class="btn btn-neutral float-left" title="Wave Equation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021 Sinupy Development Team.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
