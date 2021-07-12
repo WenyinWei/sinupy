@@ -13,7 +13,7 @@ from sympy import tensorproduct as _tprod
 t_LC = _Array([[[_LeviCivita(i1+1,i2+1,i3+1) for i3 in range(3)] for i2 in range(3)] for i1 in range(3)])
 
 def cross(A, B):
-    _tcontract(_tprod(A, B, t_LC),(0,2),(1,3))
+    return _tcontract(_tprod(A, B, t_LC),(0,2),(1,3))
 
 def dot(A, B):
     # TODO
