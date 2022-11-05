@@ -11,7 +11,8 @@ The documentation is available at [Read The Doc](https://sinupy.readthedocs.io/e
 
 The electromagnetic wave equation is the theoretical basics of our formula derivation. The following formulas reveal what we call as the tensor coefficient matrix $T$
 
-![wave_equation](https://wxy-1259064855.cos.ap-beijing.myqcloud.com/img/wave_equation_1620560123020.png)
+
+![wave_equation](https://user-images.githubusercontent.com/33152225/200117248-cc9813e3-d6e0-4e07-849d-c5e579ee0e9b.png)
 
 
 
